@@ -8,5 +8,6 @@ dependencies = [
     "django>=5.1.7",
     "django-htmx>=1.22.0",
     "django-tailwind>=3.8.0",
+    "pillow>=11.1.0",
     "whitenoise>=6.9.0",
 ]
