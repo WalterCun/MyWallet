@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<!-- Cargamos Alpine.js (y Tailwind, si no lo cargas en base.html) -->
+<script src="https://unpkg.com/alpinejs" defer></script>
+
+<div class="min-h-screen flex items-center justify-center bg-gray-100 py-6">
+  <div class="relative w-full max-w-sm h-[32rem] perspective" x-data="{ flipped: false }">
+    <!-- Tarjeta contenedora -->
+    <div class="absolute w-full h-full transition-transform duration-700 transform-style-3d"
+         :class="{ 'rotate-y-180': flipped }">
+
+      <!-- Cara frontal: LOGIN -->
+      <div class="absolute w-full h-full backface-hidden bg-white shadow-lg rounded-lg p-8 flex flex-col">
+        <h2 class="text-2xl font-bold mb-6 text-center">Iniciar Sesión</h2>
+
+        <form method="POST" class="space-y-4 flex-1 flex flex-col justify-center">
+          {% csrf_token %}
+          {{ login_form.non_field_errors }}
+          
+          <div>
+            <label for="id_username" class="block text-gray-700">Usuario</label>
+            {{ login_form.username }}
+          </div>
+          
+          <div>
+            <label for="id_password" class="block text-gray-700">Contraseña</label>
+            {{ login_form.password }}
+          </div>
+
+          <!-- Botón de iniciar sesión -->
+          <button
+            type="submit"
+            name="login_submit"
+            class="w-full py-2 mt-4 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded"
+          >
+            Iniciar Sesión
+          </button>
+        </form>
+
+        <div class="text-center mt-4">
+          <button
+            type="button"
+            class="text-sm text-indigo-600 hover:underline"
+            @click="flipped = true"
+          >
+            ¿No tienes cuenta? Regístrate
+          </button>
+        </div>
+      </div>
+
+      <!-- Cara trasera: REGISTRO -->
+      <div class="absolute w-full h-full backface-hidden bg-white shadow-lg rounded-lg p-8 flex flex-col rotate-y-180">
+        <h2 class="text-2xl font-bold mb-6 text-center">Registro</h2>
+
+        <form method="POST" class="space-y-4 flex-1 flex flex-col justify-center">
+          {% csrf_token %}
+          {{ register_form.non_field_errors }}
+
+          <div>
+            <label for="id_username" class="block text-gray-700">Usuario</label>
+            {{ register_form.username }}
+          </div>
+
+          <div>
+            <label for="id_password1" class="block text-gray-700">Contraseña</label>
+            {{ register_form.password1 }}
+          </div>
+
+          <div>
+            <label for="id_password2" class="block text-gray-700">Repite la contraseña</label>
+            {{ register_form.password2 }}
+          </div>
+
+          <!-- Botón de registro -->
+          <button
+            type="submit"
+            name="register_submit"
+            class="w-full py-2 mt-4 bg-green-600 hover:bg-green-700 text-white font-semibold rounded"
+          >
+            Registrarse
+          </button>
+        </form>
+
+        <div class="text-center mt-4">
+          <button
+            type="button"
+            class="text-sm text-indigo-600 hover:underline"
+            @click="flipped = false"
+          >
+            ¿Ya tienes cuenta? Inicia Sesión
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Clases extras para el efecto 3D */
+  .perspective {
+    perspective: 1000px;
+  }
+  .transform-style-3d {
+    transform-style: preserve-3d;
+  }
+  .rotate-y-180 {
+    transform: rotateY(180deg);
+  }
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+  .rotate-y-180 {
+    transform: rotateY(180deg);
+  }
+</style>
+{% endblock %}
