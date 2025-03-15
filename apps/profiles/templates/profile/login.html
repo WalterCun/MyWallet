@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="min-h-screen flex items-center justify-center">
+  <!-- Contenedor principal -->
+  <div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-sm">
+    <h2 class="text-2xl font-bold mb-6 text-center">Iniciar Sesión</h2>
+
+    <form method="post" class="space-y-4">
+      {% csrf_token %}
+
+      <!-- Campo de usuario -->
+      <div>
+        <label for="id_username" class="block text-gray-700">Usuario</label>
+        <input
+          type="text"
+          name="username"
+          id="id_username"
+          class="mt-1 w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-indigo-500"
+          required
+        >
+      </div>
+
+      <!-- Campo de contraseña -->
+      <div>
+        <label for="id_password" class="block text-gray-700">Contraseña</label>
+        <input
+          type="password"
+          name="password"
+          id="id_password"
+          class="mt-1 w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-indigo-500"
+          required
+        >
+      </div>
+
+      <!-- Botón de enviar -->
+      <button
+        type="submit"
+        class="w-full py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded"
+      >
+        Iniciar Sesión
+      </button>
+    </form>
+
+    <!-- Link para registro -->
+    <p class="mt-4 text-center text-sm text-gray-600">
+      ¿No tienes cuenta?
+      <a
+        href="{% url 'register' %}"
+        class="text-indigo-600 hover:text-indigo-500 font-medium"
+      >
+        Regístrate
+      </a>
+    </p>
+  </div>
+</div>
+{% endblock %}
