@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mx-auto p-6">
+    <h2 class="text-2xl font-bold mb-4">Transacciones</h2>
+
+    <div class="flex justify-end mb-4">
+        <a href="{% url 'transactions:add' %}" class="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded">
+            + Agregar Transacción
+        </a>
+    </div>
+
+    <table class="w-full border border-gray-300">
+        <thead class="bg-gray-200">
+            <tr>
+                <th class="p-2 border">Fecha</th>
+                <th class="p-2 border">Cuenta</th>
+                <th class="p-2 border">Monto</th>
+                <th class="p-2 border">Tipo</th>
+                <th class="p-2 border">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for transaction in transactions %}
+                <tr class="border">
+                    <td class="p-2">{{ transaction.created_at|date:"Y-m-d H:i" }}</td>
+                    <td class="p-2">{{ transaction.account.name }}</td>
+                    <td class="p-2">{{ transaction.amount }} {{ transaction.account.currency.code }}</td>
+                    <td class="p-2">
+                        {% if transaction.transaction_type == "income" %}
+                            <span class="text-green-500">Ingreso</span>
+                        {% elif transaction.transaction_type == "expense" %}
+                            <span class="text-red-500">Gasto</span>
+                        {% else %}
+                            <span class="text-blue-500">Transferencia</span>
+                        {% endif %}
+                    </td>
+                    <td class="p-2 flex space-x-2">
+                        <a href="{% url 'transactions:edit' transaction.id %}" class="text-blue-600 hover:underline">Editar</a>
+                        <a href="{% url 'transactions:delete' transaction.id %}" class="text-red-600 hover:underline">Eliminar</a>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="5" class="p-4 text-center">No hay transacciones registradas.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
