@@ -1,0 +1,42 @@
+[
+    {
+        "model": "accounts.accountcategory",
+        "pk": 1,
+        "fields": {"name": "Bancaria"}
+    },
+    {
+        "model": "accounts.accountcategory",
+        "pk": 2,
+        "fields": {"name": "Inversión"}
+    },
+    {
+        "model": "accounts.accountcategory",
+        "pk": 3,
+        "fields": {"name": "Importada"}
+    },
+    {
+        "model": "accounts.accountcategory",
+        "pk": 4,
+        "fields": {"name": "Manual"}
+    },
+    {
+        "model": "accounts.accounttype",
+        "pk": 1,
+        "fields": {"name": "Cuenta de Ahorro", "category": 1}
+    },
+    {
+        "model": "accounts.accounttype",
+        "pk": 2,
+        "fields": {"name": "Cuenta Corriente", "category": 1}
+    },
+    {
+        "model": "accounts.accounttype",
+        "pk": 3,
+        "fields": {"name": "Cripto Wallet", "category": 2}
+    },
+    {
+        "model": "accounts.accounttype",
+        "pk": 4,
+        "fields": {"name": "Bolsa de Valores", "category": 2}
+    }
+]

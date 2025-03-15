@@ -1,0 +1,18 @@
+<form method="POST">
+    {% csrf_token %}
+
+    <label for="id_category">Categoría</label>
+    <select id="id_category" name="category" hx-get="{% url 'filter-account-types' %}" hx-trigger="change" hx-target="#id_account_type">
+        <option value="">Selecciona una categoría</option>
+        {% for category in categories %}
+            <option value="{{ category.id }}">{{ category.name }}</option>
+        {% endfor %}
+    </select>
+
+    <label for="id_account_type">Tipo de Cuenta</label>
+    <select id="id_account_type" name="account_type">
+        <option value="">Selecciona un tipo de cuenta</option>
+    </select>
+
+    <button type="submit">Guardar</button>
+</form>

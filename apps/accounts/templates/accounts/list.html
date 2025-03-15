@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mx-auto p-6">
+    <h2 class="text-2xl font-bold mb-4">Mis Cuentas</h2>
+
+    <div class="flex justify-end mb-4">
+        <a href="{% url 'accounts:add' %}" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">
+            + Agregar Cuenta
+        </a>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {% for account in accounts %}
+            <div class="p-4 rounded-lg shadow-lg border border-gray-200" style="background-color: {{ account.color.hex }}">
+                <h3 class="text-lg font-semibold">{{ account.name }}</h3>
+                <p class="text-sm text-gray-700">Saldo Inicial: <strong>{{ account.initial_balance }} {{ account.currency.code }}</strong></p>
+                <p class="text-sm">Tipo: {{ account.account_type.name }}</p>
+
+                <div class="mt-2 flex justify-between">
+                    <a href="{% url 'accounts:edit' account.id %}" class="text-blue-600 hover:underline">Editar</a>
+                    <a href="{% url 'accounts:archive' account.id %}" class="text-red-600 hover:underline">Archivar</a>
+                </div>
+            </div>
+        {% empty %}
+            <p>No tienes cuentas registradas.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
