@@ -11,3 +11,8 @@ dependencies = [
     "pillow>=11.1.0",
     "whitenoise>=6.9.0",
 ]
+
+[dependency-groups]
+dev = [
+    "django-tailwind[reload]>=3.8.0",
+]
