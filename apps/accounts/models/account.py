@@ -29,4 +29,5 @@ class Account(Model):
     updated_at = DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f"{self.name} - {self.currency.code} ({self.category.name})"
+        category_name = self.category.name if self.category else "No Category"
+        return f"{self.name} - {self.currency.code} ({category_name})"
