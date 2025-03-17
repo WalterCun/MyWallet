@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""  """
+"""User model extending Django's AbstractUser with additional fields for the MyWallet application."""
 from django.contrib.auth.models import AbstractUser, Group, Permission
 from django.db import models
 
