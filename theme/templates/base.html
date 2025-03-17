@@ -9,7 +9,7 @@
     <title>MyWallet</title>
     {% tailwind_css %}
     <!-- Tailwind CSS -->
-        <link rel="stylesheet" href="{% static 'css/dist/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dist/styles.css' %}">
     <!-- HTMX -->
     <script src="https://unpkg.com/htmx.org@1.9.2"></script>
 
@@ -22,20 +22,33 @@
 
         window.Stimulus = Application.start();
     </script>
+    
+    <style>
+        /* Custom styles for theme colors */
+        :root {
+            /* Primary colors (Emerald Green) are defined in styles.css */
+            /* Additional custom styles can be added here */
+        }
+        
+        /* Smooth transitions for theme switching */
+        .transition-theme {
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+    </style>
 </head>
-<body class="bg-gray-100" x-data="{ darkMode: false, language: 'es', currency: 'USD' }" :class="{ 'dark': darkMode }">
+<body x-data="{ darkMode: localStorage.getItem('darkMode') === 'true', language: 'es', currency: 'USD', mobileMenuOpen: false }" x-init="$watch('darkMode', val => localStorage.setItem('darkMode', val))" :class="{ 'dark': darkMode }" class="transition-theme">
+    <div class="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-theme">
     {% include 'components/header.html' %}
     {% block content %}{% endblock %}
     {% include 'components/footer.html' %}
+    </div>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register("{% static 'service-worker.js' %}")
+                .then(reg => console.log("Service Worker registrado"))
+                .catch(err => console.log("Error en Service Worker", err));
+        }
+    </script>
 </body>
-
-<script>
-    if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register("{% static 'service-worker.js' %}")
-            .then(reg => console.log("Service Worker registrado"))
-            .catch(err => console.log("Error en Service Worker", err));
-    }
-</script>
-
-
 </html>

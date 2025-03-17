@@ -4,38 +4,89 @@
         <div class="flex items-center justify-between">
             <!-- Logo and Brand -->
             <div class="flex items-center space-x-4">
-                <a href="/" class="text-2xl font-bold text-indigo-600 dark:text-indigo-400">MyWallet</a>
+                <a href="/" class="text-2xl font-bold text-primary-600 dark:text-primary-400">MyWallet</a>
             </div>
+
+            <!-- Mobile Menu Button (visible only on mobile) -->
+            <button 
+                class="md:hidden flex items-center text-gray-600 dark:text-gray-300 focus:outline-none" 
+                @click="mobileMenuOpen = !mobileMenuOpen"
+                aria-label="Toggle mobile menu">
+                <svg x-show="!mobileMenuOpen" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+                <svg x-show="mobileMenuOpen" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
 
             <!-- Navigation Links (Centered) -->
             <div class="hidden md:flex items-center space-x-6">
-                <a href="/about/" class="text-gray-600 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400">Sobre Nosotros</a>
-                <a href="/faq/" class="text-gray-600 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400">FAQ</a>
+                <a href="/about/" class="text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400">Sobre Nosotros</a>
+                <a href="/roadmap/" class="text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400">Roadmap</a>
+                <a href="/blog/" class="text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400">Blog</a>
+                <a href="/support/" class="text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400">Soporte</a>
             </div>
 
             <!-- Utility Controls and Authentication (Right Side) -->
-            <div class="flex items-center space-x-6">
+            <div class="hidden md:flex items-center space-x-6">
                 <!-- Language Selector -->
                 <div class="relative" x-data="{ open: false }">
-                    <button @click="open = !open" class="text-gray-600 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400">
+                    <button @click="open = !open" class="flex items-center space-x-2 text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400">
+                        <svg x-show="language === 'es'" class="w-5 h-5" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+                            <rect y="0" x="0" height="36" width="36" fill="#c60b1e"/>
+                            <rect y="9" x="0" height="18" width="36" fill="#ffc400"/>
+                        </svg>
+                        <svg x-show="language === 'en'" class="w-5 h-5" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+                            <rect y="0" x="0" height="36" width="36" fill="#00247d"/>
+                            <path d="M36,0 L36,4 L22,12 L36,12 L36,24 L22,24 L36,32 L36,36 L32,36 L18,28 L18,36 L18,36 L0,36 L0,24 L14,24 L0,16 L0,12 L14,12 L0,4 L0,0 L4,0 L18,8 L18,0 L36,0 Z" fill="#fff"/>
+                            <path d="M24,12 L36,4 L36,0 L32,0 L18,8 L18,0 L0,0 L0,4 L14,12 L0,12 L0,24 L14,24 L0,32 L0,36 L18,36 L18,28 L32,36 L36,36 L36,32 L22,24 L36,24 Z" fill="#cf142b"/>
+                        </svg>
                         <span x-text="language === 'es' ? 'Español' : 'English'"></span>
                     </button>
                     <div x-show="open" @click.away="open = false" class="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-700 rounded-md shadow-lg py-1">
-                        <a href="#" @click="language = 'es'; open = false" class="block px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600">Español</a>
-                        <a href="#" @click="language = 'en'; open = false" class="block px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600">English</a>
+                        <a href="#" @click="language = 'es'; open = false" class="flex items-center space-x-2 px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600">
+                            <svg class="w-5 h-5" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+                                <rect y="0" x="0" height="36" width="36" fill="#c60b1e"/>
+                                <rect y="9" x="0" height="18" width="36" fill="#ffc400"/>
+                            </svg>
+                            <span>Español</span>
+                        </a>
+                        <a href="#" @click="language = 'en'; open = false" class="flex items-center space-x-2 px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600">
+                            <svg class="w-5 h-5" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+                                <rect y="0" x="0" height="36" width="36" fill="#00247d"/>
+                                <path d="M36,0 L36,4 L22,12 L36,12 L36,24 L22,24 L36,32 L36,36 L32,36 L18,28 L18,36 L18,36 L0,36 L0,24 L14,24 L0,16 L0,12 L14,12 L0,4 L0,0 L4,0 L18,8 L18,0 L36,0 Z" fill="#fff"/>
+                                <path d="M24,12 L36,4 L36,0 L32,0 L18,8 L18,0 L0,0 L0,4 L14,12 L0,12 L0,24 L14,24 L0,32 L0,36 L18,36 L18,28 L32,36 L36,36 L36,32 L22,24 L36,24 Z" fill="#cf142b"/>
+                            </svg>
+                            <span>English</span>
+                        </a>
                     </div>
                 </div>
                 <!-- Currency Selector -->
                 <div class="relative" x-data="{ open: false }">
-                    <button @click="open = !open" class="text-gray-600 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400" x-text="currency"></button>
+                    <button @click="open = !open" class="flex items-center space-x-1 text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400">
+                        <span x-show="currency === 'USD'">$</span>
+                        <span x-show="currency === 'EUR'">€</span>
+                        <span x-show="currency === 'GBP'">£</span>
+                        <span x-text="currency"></span>
+                    </button>
                     <div x-show="open" @click.away="open = false" class="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-700 rounded-md shadow-lg py-1">
-                        <a href="#" @click="currency = 'USD'; open = false" class="block px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600">USD</a>
-                        <a href="#" @click="currency = 'EUR'; open = false" class="block px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600">EUR</a>
-                        <a href="#" @click="currency = 'GBP'; open = false" class="block px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600">GBP</a>
+                        <a href="#" @click="currency = 'USD'; open = false" class="flex items-center space-x-2 px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600">
+                            <span class="font-medium">$</span>
+                            <span>USD</span>
+                        </a>
+                        <a href="#" @click="currency = 'EUR'; open = false" class="flex items-center space-x-2 px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600">
+                            <span class="font-medium">€</span>
+                            <span>EUR</span>
+                        </a>
+                        <a href="#" @click="currency = 'GBP'; open = false" class="flex items-center space-x-2 px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600">
+                            <span class="font-medium">£</span>
+                            <span>GBP</span>
+                        </a>
                     </div>
                 </div>
                 <!-- Theme Toggle -->
-                <button @click="darkMode = !darkMode" class="text-gray-600 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400">
+                <button @click="darkMode = !darkMode" class="text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400">
                     <svg x-show="!darkMode" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
                     </svg>
@@ -47,14 +98,107 @@
                 <!-- Authentication Links -->
                 {% if not user.is_authenticated %}
                 <div class="flex items-center space-x-4">
-                    <a href="/accounts/login/" class="text-gray-600 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400">Iniciar Sesión</a>
-                    <a href="/accounts/register/" class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition duration-300">Registrarse</a>
+                    <a href="/accounts/login/" class="text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400">Iniciar Sesión</a>
+                    <a href="/accounts/register/" class="bg-primary-600 text-white px-4 py-2 rounded-md hover:bg-primary-700 transition duration-300">Registrarse</a>
                 </div>
                 {% else %}
                 <div class="flex items-center space-x-4">
-                    <a href="/dashboard/" class="text-gray-600 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400">Dashboard</a>
-                    <a href="/accounts/logout/" class="text-gray-600 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400">Cerrar Sesión</a>
+                    <a href="/dashboard/" class="text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400">Dashboard</a>
+                    <a href="/accounts/logout/" class="text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400">Cerrar Sesión</a>
                 </div>
+                {% endif %}
+            </div>
+        </div>
+        
+        <!-- Mobile Menu (visible only when mobile menu is open) -->
+        <div 
+            x-show="mobileMenuOpen" 
+            @click.away="mobileMenuOpen = false"
+            class="md:hidden fixed inset-0 z-50 bg-white dark:bg-gray-900 pt-20 px-6 overflow-y-auto">
+            
+            <!-- Mobile Navigation Links -->
+            <div class="flex flex-col space-y-4 mb-8">
+                <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-2">Navegación</h3>
+                <a href="/about/" class="text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 py-2 border-b border-gray-100 dark:border-gray-700">Sobre Nosotros</a>
+                <a href="/roadmap/" class="text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 py-2 border-b border-gray-100 dark:border-gray-700">Roadmap</a>
+                <a href="/blog/" class="text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 py-2 border-b border-gray-100 dark:border-gray-700">Blog</a>
+                <a href="/support/" class="text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 py-2 border-b border-gray-100 dark:border-gray-700">Soporte</a>
+            </div>
+            
+            <!-- Mobile Utility Controls -->
+            <div class="flex flex-col space-y-6 mb-8">
+                <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-2">Preferencias</h3>
+                
+                <!-- Mobile Language Selector -->
+                <div class="flex flex-col space-y-2">
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Idioma</span>
+                    <div class="flex space-x-4">
+                        <button @click="language = 'es'" class="flex items-center space-x-2 py-1 px-3 rounded-md" :class="language === 'es' ? 'bg-primary-100 dark:bg-primary-900 text-primary-600 dark:text-primary-400' : 'text-gray-600 dark:text-gray-300'">
+                            <svg class="w-5 h-5" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+                                <rect y="0" x="0" height="36" width="36" fill="#c60b1e"/>
+                                <rect y="9" x="0" height="18" width="36" fill="#ffc400"/>
+                            </svg>
+                            <span>Español</span>
+                        </button>
+                        <button @click="language = 'en'" class="flex items-center space-x-2 py-1 px-3 rounded-md" :class="language === 'en' ? 'bg-primary-100 dark:bg-primary-900 text-primary-600 dark:text-primary-400' : 'text-gray-600 dark:text-gray-300'">
+                            <svg class="w-5 h-5" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+                                <rect y="0" x="0" height="36" width="36" fill="#00247d"/>
+                                <path d="M36,0 L36,4 L22,12 L36,12 L36,24 L22,24 L36,32 L36,36 L32,36 L18,28 L18,36 L18,36 L0,36 L0,24 L14,24 L0,16 L0,12 L14,12 L0,4 L0,0 L4,0 L18,8 L18,0 L36,0 Z" fill="#fff"/>
+                                <path d="M24,12 L36,4 L36,0 L32,0 L18,8 L18,0 L0,0 L0,4 L14,12 L0,12 L0,24 L14,24 L0,32 L0,36 L18,36 L18,28 L32,36 L36,36 L36,32 L22,24 L36,24 Z" fill="#cf142b"/>
+                            </svg>
+                            <span>English</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Mobile Currency Selector -->
+                <div class="flex flex-col space-y-2">
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Moneda</span>
+                    <div class="flex space-x-4">
+                        <button @click="currency = 'USD'" class="flex items-center space-x-2 py-1 px-3 rounded-md" :class="currency === 'USD' ? 'bg-primary-100 dark:bg-primary-900 text-primary-600 dark:text-primary-400' : 'text-gray-600 dark:text-gray-300'">
+                            <span class="font-medium">$</span>
+                            <span>USD</span>
+                        </button>
+                        <button @click="currency = 'EUR'" class="flex items-center space-x-2 py-1 px-3 rounded-md" :class="currency === 'EUR' ? 'bg-primary-100 dark:bg-primary-900 text-primary-600 dark:text-primary-400' : 'text-gray-600 dark:text-gray-300'">
+                            <span class="font-medium">€</span>
+                            <span>EUR</span>
+                        </button>
+                        <button @click="currency = 'GBP'" class="flex items-center space-x-2 py-1 px-3 rounded-md" :class="currency === 'GBP' ? 'bg-primary-100 dark:bg-primary-900 text-primary-600 dark:text-primary-400' : 'text-gray-600 dark:text-gray-300'">
+                            <span class="font-medium">£</span>
+                            <span>GBP</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Mobile Theme Toggle -->
+                <div class="flex flex-col space-y-2">
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Tema</span>
+                    <div class="flex items-center space-x-4">
+                        <button @click="darkMode = false" class="flex items-center space-x-2 py-1 px-3 rounded-md" :class="!darkMode ? 'bg-primary-100 dark:bg-primary-900 text-primary-600 dark:text-primary-400' : 'text-gray-600 dark:text-gray-300'">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                            </svg>
+                            <span>Claro</span>
+                        </button>
+                        <button @click="darkMode = true" class="flex items-center space-x-2 py-1 px-3 rounded-md" :class="darkMode ? 'bg-primary-100 dark:bg-primary-900 text-primary-600 dark:text-primary-400' : 'text-gray-600 dark:text-gray-300'">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                            </svg>
+                            <span>Oscuro</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Mobile Authentication Links -->
+            <div class="flex flex-col space-y-4 mb-8">
+                <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-2">Cuenta</h3>
+                {% if not user.is_authenticated %}
+                <a href="/accounts/login/" class="text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 py-2 border-b border-gray-100 dark:border-gray-700">Iniciar Sesión</a>
+                <a href="/accounts/register/" class="bg-primary-600 text-white px-4 py-2 rounded-md hover:bg-primary-700 transition duration-300 inline-block w-full text-center">Registrarse</a>
+                {% else %}
+                <a href="/dashboard/" class="text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 py-2 border-b border-gray-100 dark:border-gray-700">Dashboard</a>
+                <a href="/accounts/logout/" class="text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 py-2 border-b border-gray-100 dark:border-gray-700">Cerrar Sesión</a>
                 {% endif %}
             </div>
         </div>
