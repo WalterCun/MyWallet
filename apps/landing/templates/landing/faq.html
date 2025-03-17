@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="min-h-screen py-16 bg-gray-100 dark:bg-gray-900">
+    <div class="container mx-auto px-4">
+        <div class="max-w-3xl mx-auto">
+            <h1 class="text-4xl font-bold mb-8 text-center text-gray-900 dark:text-white">Preguntas Frecuentes</h1>
+
+            <!-- General Questions -->
+            <div class="mb-12">
+                <h2 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Preguntas Generales</h2>
+                <div class="space-y-6">
+                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+                        <h3 class="text-xl font-semibold mb-3 text-gray-900 dark:text-white">¿Qué es MyWallet?</h3>
+                        <p class="text-gray-600 dark:text-gray-300">MyWallet es una plataforma de gestión financiera personal que te ayuda a controlar tus gastos, establecer presupuestos y alcanzar tus metas financieras de manera eficiente.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+                        <h3 class="text-xl font-semibold mb-3 text-gray-900 dark:text-white">¿Es gratis usar MyWallet?</h3>
+                        <p class="text-gray-600 dark:text-gray-300">Ofrecemos una versión gratuita con funcionalidades básicas y planes premium con características adicionales para usuarios que necesitan herramientas más avanzadas.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Security Questions -->
+            <div class="mb-12">
+                <h2 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Seguridad</h2>
+                <div class="space-y-6">
+                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+                        <h3 class="text-xl font-semibold mb-3 text-gray-900 dark:text-white">¿Qué tan segura es mi información?</h3>
+                        <p class="text-gray-600 dark:text-gray-300">Utilizamos encriptación de grado bancario y las últimas tecnologías de seguridad para proteger tu información. Tus datos están seguros con nosotros.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+                        <h3 class="text-xl font-semibold mb-3 text-gray-900 dark:text-white">¿Cómo protegen mis datos bancarios?</h3>
+                        <p class="text-gray-600 dark:text-gray-300">No almacenamos información sensible de tarjetas de crédito. Trabajamos con procesadores de pago certificados que cumplen con los más altos estándares de seguridad.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features Questions -->
+            <div class="mb-12">
+                <h2 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Características</h2>
+                <div class="space-y-6">
+                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+                        <h3 class="text-xl font-semibold mb-3 text-gray-900 dark:text-white">¿Puedo sincronizar múltiples cuentas?</h3>
+                        <p class="text-gray-600 dark:text-gray-300">Sí, puedes conectar múltiples cuentas bancarias y tarjetas para tener una visión completa de tus finanzas en un solo lugar.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+                        <h3 class="text-xl font-semibold mb-3 text-gray-900 dark:text-white">¿Ofrecen reportes personalizados?</h3>
+                        <p class="text-gray-600 dark:text-gray-300">Sí, proporcionamos informes detallados y personalizables que te ayudan a entender mejor tus hábitos de gasto y tomar mejores decisiones financieras.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Support Section -->
+            <div class="text-center">
+                <h2 class="text-2xl font-bold mb-4 text-gray-900 dark:text-white">¿No encontraste lo que buscabas?</h2>
+                <p class="text-gray-600 dark:text-gray-300 mb-6">Nuestro equipo de soporte está aquí para ayudarte</p>
+                <a href="/contact/" class="bg-indigo-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-indigo-700 transition duration-300">Contáctanos</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
