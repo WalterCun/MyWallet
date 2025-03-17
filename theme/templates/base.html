@@ -1,0 +1,41 @@
+{% load tailwind_tags %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="{% static 'manifest.json' %}">
+    <title>MyWallet</title>
+    {% tailwind_css %}
+    <!-- Tailwind CSS -->
+        <link rel="stylesheet" href="{% static 'css/dist/styles.css' %}">
+    <!-- HTMX -->
+    <script src="https://unpkg.com/htmx.org@1.9.2"></script>
+
+    <!-- Alpine.js -->
+    <script src="https://unpkg.com/alpinejs" defer></script>
+
+    <!-- Stimulus.js -->
+    <script type="module">
+        import {Application} from "https://unpkg.com/@hotwired/stimulus/dist/stimulus.js";
+
+        window.Stimulus = Application.start();
+    </script>
+</head>
+<body class="bg-gray-100" x-data="{ darkMode: false, language: 'es', currency: 'USD' }" :class="{ 'dark': darkMode }">
+    {% include 'components/header.html' %}
+    {% block content %}{% endblock %}
+    {% include 'components/footer.html' %}
+</body>
+
+<script>
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register("{% static 'service-worker.js' %}")
+            .then(reg => console.log("Service Worker registrado"))
+            .catch(err => console.log("Error en Service Worker", err));
+    }
+</script>
+
+
+</html>

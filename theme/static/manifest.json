@@ -1,0 +1,13 @@
+{
+    "short_name": "MyWallet",
+    "name": "MyWallet - Control de Gastos",
+    "icons": [
+        { "src": "/static/icons/icon-192x192.png", "sizes": "192x192", "type": "image/png" },
+        { "src": "/static/icons/icon-512x512.png", "sizes": "512x512", "type": "image/png" }
+    ],
+    "start_url": "/",
+    "background_color": "#ffffff",
+    "display": "standalone",
+    "scope": "/",
+    "theme_color": "#4F46E5"
+}
