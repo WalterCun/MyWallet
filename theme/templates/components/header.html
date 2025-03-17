@@ -1,0 +1,62 @@
+{% load static %}
+<header class="bg-white shadow-sm dark:bg-gray-800">
+    <nav class="container mx-auto px-4 py-3">
+        <div class="flex items-center justify-between">
+            <!-- Logo and Brand -->
+            <div class="flex items-center space-x-4">
+                <a href="/" class="text-2xl font-bold text-indigo-600 dark:text-indigo-400">MyWallet</a>
+            </div>
+
+            <!-- Navigation Links (Centered) -->
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="/about/" class="text-gray-600 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400">Sobre Nosotros</a>
+                <a href="/faq/" class="text-gray-600 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400">FAQ</a>
+            </div>
+
+            <!-- Utility Controls and Authentication (Right Side) -->
+            <div class="flex items-center space-x-6">
+                <!-- Language Selector -->
+                <div class="relative" x-data="{ open: false }">
+                    <button @click="open = !open" class="text-gray-600 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400">
+                        <span x-text="language === 'es' ? 'Español' : 'English'"></span>
+                    </button>
+                    <div x-show="open" @click.away="open = false" class="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-700 rounded-md shadow-lg py-1">
+                        <a href="#" @click="language = 'es'; open = false" class="block px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600">Español</a>
+                        <a href="#" @click="language = 'en'; open = false" class="block px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600">English</a>
+                    </div>
+                </div>
+                <!-- Currency Selector -->
+                <div class="relative" x-data="{ open: false }">
+                    <button @click="open = !open" class="text-gray-600 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400" x-text="currency"></button>
+                    <div x-show="open" @click.away="open = false" class="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-700 rounded-md shadow-lg py-1">
+                        <a href="#" @click="currency = 'USD'; open = false" class="block px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600">USD</a>
+                        <a href="#" @click="currency = 'EUR'; open = false" class="block px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600">EUR</a>
+                        <a href="#" @click="currency = 'GBP'; open = false" class="block px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600">GBP</a>
+                    </div>
+                </div>
+                <!-- Theme Toggle -->
+                <button @click="darkMode = !darkMode" class="text-gray-600 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400">
+                    <svg x-show="!darkMode" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                    </svg>
+                    <svg x-show="darkMode" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                    </svg>
+                </button>
+
+                <!-- Authentication Links -->
+                {% if not user.is_authenticated %}
+                <div class="flex items-center space-x-4">
+                    <a href="/accounts/login/" class="text-gray-600 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400">Iniciar Sesión</a>
+                    <a href="/accounts/register/" class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition duration-300">Registrarse</a>
+                </div>
+                {% else %}
+                <div class="flex items-center space-x-4">
+                    <a href="/dashboard/" class="text-gray-600 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400">Dashboard</a>
+                    <a href="/accounts/logout/" class="text-gray-600 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400">Cerrar Sesión</a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+</header>
