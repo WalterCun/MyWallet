@@ -1,0 +1,152 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <!-- Hero Section -->
+    <div class="text-center mb-12">
+        <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">Centro de Soporte</h1>
+        <p class="text-xl text-gray-600 dark:text-gray-300">¿Cómo podemos ayudarte hoy?</p>
+        
+        <!-- Search Bar -->
+        <div class="max-w-2xl mx-auto mt-8">
+            <div class="relative">
+                <input type="text" id="support-search" 
+                       class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 
+                              bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                       placeholder="Busca en nuestra base de conocimientos...">
+                <button class="absolute right-3 top-3">
+                    <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Grid -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        <!-- Quick Start Guide -->
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+            <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Guía Rápida</h2>
+            <ul class="space-y-3">
+                <li><a href="#" class="text-indigo-600 dark:text-indigo-400 hover:underline">Primeros pasos</a></li>
+                <li><a href="#" class="text-indigo-600 dark:text-indigo-400 hover:underline">Configurar tu presupuesto</a></li>
+                <li><a href="#" class="text-indigo-600 dark:text-indigo-400 hover:underline">Conectar cuentas bancarias</a></li>
+            </ul>
+        </div>
+
+        <!-- Common Questions -->
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+            <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Preguntas Frecuentes</h2>
+            <ul class="space-y-3">
+                <li><a href="#" class="text-indigo-600 dark:text-indigo-400 hover:underline">¿Cómo funciona la sincronización?</a></li>
+                <li><a href="#" class="text-indigo-600 dark:text-indigo-400 hover:underline">Opciones de suscripción</a></li>
+                <li><a href="#" class="text-indigo-600 dark:text-indigo-400 hover:underline">Seguridad y privacidad</a></li>
+            </ul>
+        </div>
+
+        <!-- Contact Support -->
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+            <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Contacto Directo</h2>
+            <ul class="space-y-3">
+                <li><a href="#" class="text-indigo-600 dark:text-indigo-400 hover:underline">Enviar sugerencia</a></li>
+                <li><a href="#" class="text-indigo-600 dark:text-indigo-400 hover:underline">Reportar un problema</a></li>
+                <li><a href="#" class="text-indigo-600 dark:text-indigo-400 hover:underline">Chat con soporte</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Suggestion Form Section -->
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-8 mb-12">
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Envíanos tus Sugerencias</h2>
+        <form class="space-y-6">
+            <div>
+                <label for="suggestion-title" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Título</label>
+                <input type="text" id="suggestion-title" name="title" 
+                       class="w-full px-4 py-2 rounded-md border border-gray-300 dark:border-gray-600 
+                              bg-white dark:bg-gray-700 text-gray-900 dark:text-white">
+            </div>
+            <div>
+                <label for="suggestion-category" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Categoría</label>
+                <select id="suggestion-category" name="category"
+                        class="w-full px-4 py-2 rounded-md border border-gray-300 dark:border-gray-600 
+                               bg-white dark:bg-gray-700 text-gray-900 dark:text-white">
+                    <option value="feature">Nueva Funcionalidad</option>
+                    <option value="improvement">Mejora</option>
+                    <option value="bug">Reporte de Error</option>
+                    <option value="other">Otro</option>
+                </select>
+            </div>
+            <div>
+                <label for="suggestion-description" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Descripción</label>
+                <textarea id="suggestion-description" name="description" rows="4"
+                          class="w-full px-4 py-2 rounded-md border border-gray-300 dark:border-gray-600 
+                                 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"></textarea>
+            </div>
+            <button type="submit" 
+                    class="w-full md:w-auto px-6 py-3 bg-indigo-600 text-white rounded-md 
+                           hover:bg-indigo-700 transition duration-300">
+                Enviar Sugerencia
+            </button>
+        </form>
+    </div>
+
+    <!-- FAQ Accordion Section -->
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-8">
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Preguntas Frecuentes</h2>
+        <div class="space-y-4" x-data="{selected: null}">
+            <!-- FAQ Item 1 -->
+            <div class="border-b border-gray-200 dark:border-gray-700 pb-4">
+                <button @click="selected !== 1 ? selected = 1 : selected = null"
+                        class="flex justify-between items-center w-full text-left">
+                    <span class="text-lg font-medium text-gray-900 dark:text-white">¿Cómo empiezo a usar MyWallet?</span>
+                    <svg class="w-5 h-5 text-gray-500" :class="{'transform rotate-180': selected == 1}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </button>
+                <div x-show="selected == 1" class="mt-4 text-gray-600 dark:text-gray-300">
+                    Para comenzar, simplemente regístrate con tu correo electrónico. Una vez dentro, podrás configurar tus cuentas, establecer presupuestos y comenzar a realizar un seguimiento de tus gastos.
+                </div>
+            </div>
+
+            <!-- FAQ Item 2 -->
+            <div class="border-b border-gray-200 dark:border-gray-700 pb-4">
+                <button @click="selected !== 2 ? selected = 2 : selected = null"
+                        class="flex justify-between items-center w-full text-left">
+                    <span class="text-lg font-medium text-gray-900 dark:text-white">¿Es segura mi información financiera?</span>
+                    <svg class="w-5 h-5 text-gray-500" :class="{'transform rotate-180': selected == 2}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </button>
+                <div x-show="selected == 2" class="mt-4 text-gray-600 dark:text-gray-300">
+                    Sí, tu seguridad es nuestra prioridad. Utilizamos encriptación de nivel bancario y nunca almacenamos tus credenciales bancarias. Además, implementamos autenticación de dos factores para mayor protección.
+                </div>
+            </div>
+
+            <!-- FAQ Item 3 -->
+            <div class="border-b border-gray-200 dark:border-gray-700 pb-4">
+                <button @click="selected !== 3 ? selected = 3 : selected = null"
+                        class="flex justify-between items-center w-full text-left">
+                    <span class="text-lg font-medium text-gray-900 dark:text-white">¿Puedo sincronizar múltiples cuentas bancarias?</span>
+                    <svg class="w-5 h-5 text-gray-500" :class="{'transform rotate-180': selected == 3}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </button>
+                <div x-show="selected == 3" class="mt-4 text-gray-600 dark:text-gray-300">
+                    Sí, puedes conectar múltiples cuentas bancarias y tarjetas de crédito para tener una visión completa de tus finanzas en un solo lugar.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Support search functionality
+    document.getElementById('support-search').addEventListener('input', function(e) {
+        // Implement search logic here
+    });
+</script>
+{% endblock %}
